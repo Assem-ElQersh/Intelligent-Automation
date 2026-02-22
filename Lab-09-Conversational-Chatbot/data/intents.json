@@ -1,0 +1,156 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi", "Hello", "Hey", "Good morning", "Good afternoon", "Good evening",
+        "Hi there", "Howdy", "What's up", "Greetings", "Hey bot", "Hello there"
+      ],
+      "responses": [
+        "Hello! How can I help you today?",
+        "Hi there! What can I do for you?",
+        "Hey! I'm here to help. What do you need?",
+        "Greetings! How may I assist you?"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "Bye", "Goodbye", "See you", "See you later", "Talk to you later",
+        "I have to go", "Quit", "Exit", "That's all", "Thanks, bye"
+      ],
+      "responses": [
+        "Goodbye! Have a great day!",
+        "See you later! Feel free to come back anytime.",
+        "Bye! It was great helping you.",
+        "Take care! Chat with me anytime."
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "Thanks", "Thank you", "Thank you so much", "Many thanks",
+        "Thanks a lot", "Appreciate it", "That's helpful", "Great, thanks"
+      ],
+      "responses": [
+        "You're welcome!",
+        "Happy to help!",
+        "No problem at all!",
+        "Glad I could assist!"
+      ]
+    },
+    {
+      "tag": "product_info",
+      "patterns": [
+        "What products do you offer?", "Tell me about your products",
+        "What can I buy?", "Product catalog", "What do you sell?",
+        "Show me your products", "What's available?", "Product list"
+      ],
+      "responses": [
+        "We offer a wide range of products including electronics, accessories, and premium bundles. Visit our catalog at /products for details.",
+        "Our product range includes Widget A, Widget B, Gadget X, Gadget Y, and Premium Packs. Would you like details on a specific item?",
+        "We have electronics, accessories, and bundles available. Check our website for the full catalog with pricing."
+      ]
+    },
+    {
+      "tag": "pricing",
+      "patterns": [
+        "How much does it cost?", "What's the price?", "Pricing information",
+        "How much is it?", "What are your prices?", "Is it expensive?",
+        "Price list", "Cost details", "How much for Widget A?"
+      ],
+      "responses": [
+        "Our prices range from $9.99 to $499.99 depending on the product. Check the product page for exact pricing.",
+        "Pricing varies by product. Our budget range starts at $9.99, mid-range at $30–$100, and premium above $100.",
+        "I can help with pricing! Could you specify which product you're interested in?"
+      ]
+    },
+    {
+      "tag": "shipping",
+      "patterns": [
+        "How long does shipping take?", "Delivery time", "When will my order arrive?",
+        "Shipping options", "Do you ship internationally?", "Shipping cost",
+        "Free shipping?", "How fast is delivery?", "Estimated delivery"
+      ],
+      "responses": [
+        "Standard shipping takes 3–5 business days. Express shipping (1–2 days) is available at checkout.",
+        "We offer free shipping on orders over $50. Standard delivery is 3–5 days, express is 1–2 days.",
+        "International shipping is available to 50+ countries. Delivery times vary by location (typically 7–14 days)."
+      ]
+    },
+    {
+      "tag": "returns",
+      "patterns": [
+        "What is your return policy?", "Can I return this?", "How do I return an item?",
+        "Return process", "Refund policy", "I want to return my order",
+        "Exchange policy", "30 day return?", "Money back guarantee"
+      ],
+      "responses": [
+        "We offer a 30-day hassle-free return policy. Items must be in original condition.",
+        "To return an item, visit our Returns Center on the website or contact support@company.com.",
+        "Yes, we have a 30-day return window. Refunds are processed within 5–7 business days after we receive the item."
+      ]
+    },
+    {
+      "tag": "order_status",
+      "patterns": [
+        "Where is my order?", "Track my order", "Order status",
+        "Has my order shipped?", "I haven't received my order",
+        "Order tracking", "Check my delivery", "When will my order ship?"
+      ],
+      "responses": [
+        "To track your order, visit our Order Tracking page and enter your order number.",
+        "You can check your order status at orders.company.com using your order ID and email address.",
+        "Please provide your order number and I can help you check its status, or visit our tracking portal."
+      ]
+    },
+    {
+      "tag": "support",
+      "patterns": [
+        "I need help", "Customer support", "Contact support",
+        "I have a problem", "Something is wrong", "Help me",
+        "Technical issue", "My order is wrong", "I have a complaint"
+      ],
+      "responses": [
+        "I'm sorry to hear that! Our support team is available 24/7. Contact us at support@company.com or call 1-800-COMPANY.",
+        "For urgent issues, please contact our support team at support@company.com. Average response time is 2 hours.",
+        "Our dedicated support team can help. Please describe your issue and I'll do my best to assist, or escalate to a human agent."
+      ]
+    },
+    {
+      "tag": "hours",
+      "patterns": [
+        "What are your business hours?", "When are you open?", "Office hours",
+        "Are you open on weekends?", "What time do you close?", "24/7 support?"
+      ],
+      "responses": [
+        "Our customer service is available Monday–Friday, 9 AM to 6 PM EST. Emergency support is available 24/7 via email.",
+        "Business hours are Mon–Fri 9 AM–6 PM EST. Our chatbot is available 24/7 for common queries.",
+        "We're open Monday to Friday, 9 AM to 6 PM Eastern Time. Orders can be placed any time on our website."
+      ]
+    },
+    {
+      "tag": "bot_info",
+      "patterns": [
+        "What are you?", "Are you a bot?", "Who are you?",
+        "Are you human?", "What can you do?", "What is your name?",
+        "Tell me about yourself", "Are you AI?"
+      ],
+      "responses": [
+        "I'm an AI-powered chatbot built in Lab 09 of the Intelligent Automation repository! I can help with product info, orders, shipping, and more.",
+        "I'm a conversational AI assistant. I understand your intent and provide relevant answers. How can I help?",
+        "I'm your automated assistant! I can answer questions about products, orders, shipping, returns, and general support."
+      ]
+    },
+    {
+      "tag": "fallback",
+      "patterns": [],
+      "responses": [
+        "I'm not sure I understand. Could you rephrase that?",
+        "Hmm, I didn't quite catch that. Try asking about products, orders, shipping, or returns.",
+        "I'm still learning! Could you ask that differently? Or type 'help' to see what I can assist with.",
+        "Sorry, I'm not sure how to help with that. You can contact our support team at support@company.com."
+      ]
+    }
+  ]
+}

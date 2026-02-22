@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    body { font-family: Arial, sans-serif; color: #222; background: #f9f9f9; }
+    .container { max-width: 560px; margin: 30px auto; background: #fff;
+                 border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden; }
+    .header { background: #059669; color: #fff; padding: 20px 28px; }
+    .header h2 { margin: 0; font-size: 18px; }
+    .body { padding: 20px 28px; line-height: 1.6; }
+    .tag  { display: inline-block; background: #d1fae5; color: #065f46;
+            border-radius: 4px; padding: 2px 8px; font-size: 12px; font-weight: bold; }
+    .footer { padding: 12px 28px; font-size: 11px; color: #aaa; border-top: 1px solid #eee; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h2>Auto-Reply: We received your message</h2>
+  </div>
+  <div class="body">
+    <p>Dear {{ sender_name }},</p>
+    <p>Thank you for contacting us. We have received your email with subject:</p>
+    <p><strong>{{ original_subject }}</strong></p>
+    <p>
+      Your message was detected as: <span class="tag">{{ matched_keyword }}</span>
+    </p>
+    <p>{{ response_message }}</p>
+    <p>We will follow up with you within <strong>{{ sla_hours }} business hours</strong>.</p>
+    <p>Best regards,<br/>The Automated Support System</p>
+  </div>
+  <div class="footer">
+    This is an automated response. Reference ID: {{ ref_id }}
+  </div>
+</div>
+</body>
+</html>

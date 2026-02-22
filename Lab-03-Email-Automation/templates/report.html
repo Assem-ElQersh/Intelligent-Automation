@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    body { font-family: Arial, sans-serif; color: #222; background: #f9f9f9; margin: 0; padding: 0; }
+    .container { max-width: 600px; margin: 30px auto; background: #fff; border-radius: 8px;
+                 box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden; }
+    .header { background: #2563eb; color: #fff; padding: 24px 32px; }
+    .header h1 { margin: 0; font-size: 22px; }
+    .header p  { margin: 4px 0 0; font-size: 13px; opacity: 0.85; }
+    .body  { padding: 24px 32px; }
+    .stat  { display: inline-block; background: #f1f5fb; border-radius: 6px;
+             padding: 12px 20px; margin: 8px 8px 8px 0; min-width: 130px; }
+    .stat .value { font-size: 26px; font-weight: bold; color: #2563eb; }
+    .stat .label { font-size: 12px; color: #666; margin-top: 2px; }
+    table  { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 13px; }
+    th     { background: #2563eb; color: #fff; padding: 8px 12px; text-align: left; }
+    td     { padding: 7px 12px; border-bottom: 1px solid #eee; }
+    tr:nth-child(even) td { background: #f7faff; }
+    .footer { padding: 14px 32px; font-size: 11px; color: #aaa; border-top: 1px solid #eee; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>Automated Report: {{ report_title }}</h1>
+    <p>Generated on {{ generated_at }}</p>
+  </div>
+  <div class="body">
+    <p>Hello,</p>
+    <p>Here is your automated summary report for <strong>{{ period }}</strong>.</p>
+
+    <div>
+      {% for stat in stats %}
+      <div class="stat">
+        <div class="value">{{ stat.value }}</div>
+        <div class="label">{{ stat.label }}</div>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% if rows %}
+    <table>
+      <thead>
+        <tr>{% for col in columns %}<th>{{ col }}</th>{% endfor %}</tr>
+      </thead>
+      <tbody>
+        {% for row in rows %}
+        <tr>{% for cell in row %}<td>{{ cell }}</td>{% endfor %}</tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+  </div>
+  <div class="footer">
+    This email was sent automatically by the Intelligent Automation Lab 03 system.
+    Do not reply to this address.
+  </div>
+</div>
+</body>
+</html>

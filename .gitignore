@@ -1,0 +1,78 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.whl
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.env/
+
+# Environment variables
+.env
+*.env
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# IDE
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.cursor/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Distribution
+*.tar.gz
+*.zip
+
+# Lab outputs (generated files)
+*/data/output/
+*/data/processed/
+*/models/*.pkl
+*/models/*.joblib
+*/logs/*.csv
+*/logs/*.log
+
+# Large data files
+*.csv.gz
+*.parquet
+*.h5
+*.hdf5
+
+# Lab 08 specific
+*.jpg
+*.jpeg
+*.png
+*.bmp
+*.tiff
+!data/sample_*

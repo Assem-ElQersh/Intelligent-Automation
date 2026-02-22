@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IA Chatbot — Lab 09</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e40af 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .chat-container {
+      width: 100%;
+      max-width: 480px;
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+      display: flex;
+      flex-direction: column;
+      height: 620px;
+    }
+
+    .chat-header {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #fff;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .bot-avatar {
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .bot-info h2 { font-size: 16px; font-weight: 700; }
+    .bot-info p  { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+    .status-dot {
+      width: 8px; height: 8px;
+      background: #4ade80; border-radius: 50%;
+      display: inline-block; margin-right: 5px;
+    }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: #f8faff;
+    }
+
+    .message {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      max-width: 85%;
+      animation: fadeIn 0.2s ease;
+    }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+
+    .message.user  { align-self: flex-end; flex-direction: row-reverse; }
+    .message.bot   { align-self: flex-start; }
+
+    .avatar {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: #2563eb; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; flex-shrink: 0;
+    }
+    .message.user .avatar { background: #7c3aed; }
+
+    .bubble {
+      padding: 10px 14px;
+      border-radius: 18px;
+      font-size: 14px;
+      line-height: 1.5;
+      max-width: 100%;
+      word-wrap: break-word;
+    }
+    .message.bot  .bubble { background: #fff; color: #1e293b; border-bottom-left-radius: 4px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+    .message.user .bubble { background: #2563eb; color: #fff; border-bottom-right-radius: 4px; }
+
+    .intent-badge {
+      font-size: 10px;
+      color: #94a3b8;
+      padding: 2px 6px;
+      background: #f1f5f9;
+      border-radius: 10px;
+      margin-top: 4px;
+      display: inline-block;
+    }
+
+    .typing { display: flex; gap: 4px; padding: 12px 16px; }
+    .typing span {
+      width: 7px; height: 7px; border-radius: 50%; background: #94a3b8;
+      animation: bounce 1.2s infinite;
+    }
+    .typing span:nth-child(2) { animation-delay: 0.2s; }
+    .typing span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes bounce {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-6px); }
+    }
+
+    .chat-input {
+      padding: 16px;
+      background: #fff;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      gap: 8px;
+    }
+    .chat-input input {
+      flex: 1;
+      padding: 10px 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 24px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .chat-input input:focus { border-color: #2563eb; }
+    .chat-input button {
+      width: 44px; height: 44px;
+      background: #2563eb; color: #fff;
+      border: none; border-radius: 50%;
+      cursor: pointer; font-size: 18px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .chat-input button:hover { background: #1d4ed8; }
+  </style>
+</head>
+<body>
+<div class="chat-container">
+  <div class="chat-header">
+    <div class="bot-avatar">🤖</div>
+    <div class="bot-info">
+      <h2>IA Assistant</h2>
+      <p><span class="status-dot"></span>Online · Lab 09</p>
+    </div>
+  </div>
+
+  <div class="chat-messages" id="messages">
+    <div class="message bot">
+      <div class="avatar">🤖</div>
+      <div>
+        <div class="bubble">Hello! I'm your AI assistant. I can help with products, orders, shipping, and more. How can I help you today?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input">
+    <input type="text" id="userInput" placeholder="Type a message…" autocomplete="off" />
+    <button onclick="sendMessage()" title="Send">➤</button>
+  </div>
+</div>
+
+<script>
+  const messagesEl = document.getElementById("messages");
+  const inputEl = document.getElementById("userInput");
+
+  function scrollToBottom() {
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  function appendMessage(text, role, intent, confidence) {
+    const wrapper = document.createElement("div");
+    wrapper.className = `message ${role}`;
+
+    const avatar = document.createElement("div");
+    avatar.className = "avatar";
+    avatar.textContent = role === "bot" ? "🤖" : "👤";
+
+    const inner = document.createElement("div");
+    const bubble = document.createElement("div");
+    bubble.className = "bubble";
+    bubble.textContent = text;
+    inner.appendChild(bubble);
+
+    if (role === "bot" && intent && intent !== "fallback") {
+      const badge = document.createElement("span");
+      badge.className = "intent-badge";
+      badge.textContent = `${intent} · ${Math.round(confidence * 100)}%`;
+      inner.appendChild(badge);
+    }
+
+    wrapper.appendChild(avatar);
+    wrapper.appendChild(inner);
+    messagesEl.appendChild(wrapper);
+    scrollToBottom();
+  }
+
+  function showTyping() {
+    const typing = document.createElement("div");
+    typing.className = "message bot";
+    typing.id = "typing";
+    typing.innerHTML = `
+      <div class="avatar">🤖</div>
+      <div class="bubble typing">
+        <span></span><span></span><span></span>
+      </div>`;
+    messagesEl.appendChild(typing);
+    scrollToBottom();
+  }
+
+  function removeTyping() {
+    const el = document.getElementById("typing");
+    if (el) el.remove();
+  }
+
+  async function sendMessage() {
+    const text = inputEl.value.trim();
+    if (!text) return;
+
+    appendMessage(text, "user");
+    inputEl.value = "";
+    showTyping();
+
+    try {
+      const resp = await fetch("/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: text }),
+      });
+      const data = await resp.json();
+      removeTyping();
+      appendMessage(data.response, "bot", data.intent, data.confidence);
+    } catch (err) {
+      removeTyping();
+      appendMessage("Sorry, something went wrong. Please try again.", "bot");
+    }
+  }
+
+  inputEl.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") sendMessage();
+  });
+</script>
+</body>
+</html>

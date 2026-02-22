@@ -1,0 +1,7 @@
+opencv-python-headless==4.10.0.84
+Pillow==10.4.0
+scikit-learn==1.5.1
+numpy==1.26.4
+matplotlib==3.9.2
+seaborn==0.13.2
+joblib==1.4.2

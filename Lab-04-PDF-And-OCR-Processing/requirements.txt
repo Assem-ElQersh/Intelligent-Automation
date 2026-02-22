@@ -1,0 +1,6 @@
+pdfplumber==0.11.1
+pytesseract==0.3.13
+Pillow==10.4.0
+pandas==2.2.2
+reportlab==4.2.2
+pdf2image==1.17.0

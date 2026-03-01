@@ -37,24 +37,24 @@ Welcome to the **Intelligent Automation Projects Repository**. This repository c
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                    RPA Layer                             │
+│                    RPA Layer                            │
 │   Lab 01: File Automation   Lab 02: Web Scraping        │
 │   Lab 03: Email Automation  Lab 04: OCR / PDF           │
 └────────────────────────┬────────────────────────────────┘
                          │
 ┌────────────────────────▼────────────────────────────────┐
-│                    AI Layer                              │
+│                    AI Layer                             │
 │   Lab 05: Sentiment Analysis  Lab 06: ML Pipeline       │
 │   Lab 08: Computer Vision     Lab 09: Chatbot           │
 └────────────────────────┬────────────────────────────────┘
                          │
 ┌────────────────────────▼────────────────────────────────┐
-│                    BPM Layer                             │
-│              Lab 07: API Workflow Automation             │
+│                    BPM Layer                            │
+│              Lab 07: API Workflow Automation            │
 └────────────────────────┬────────────────────────────────┘
                          │
 ┌────────────────────────▼────────────────────────────────┐
-│            Integration Layer (Lab 10)                    │
+│            Integration Layer (Lab 10)                   │
 │      Scrape → Extract → Analyze → Predict → Notify      │
 └─────────────────────────────────────────────────────────┘
 ```
